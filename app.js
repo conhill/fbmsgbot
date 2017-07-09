@@ -198,7 +198,46 @@ app.post('/webhook', function (req, res) {
         //     sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         // }
         if(event.message.text === "ringo nyt"){
-        	sendMessage(event.sender.id, {text: "NYT!!!"});
+
+        	request.get({
+			    url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
+			    qs: {
+			        'api-key': "fca6d877b0354be1b1006d1d4091d3d7",
+			        'sort': "newest",
+			        'fl': "web_url,headline"
+			    },
+			}, function(err, response, body) {
+			    if (err) {
+			        console.log("Database error: " + err);
+			    } else {
+			        body = JSON.parse(body);
+			        var tweet = '';
+			        //use checkTweet to get a tweet against current tweets
+			        body.response.docs[0].main
+			        message = {
+			            attachment: {
+			                type: "template",
+			                payload: {
+			                    template_type: "generic",
+			                    elements: [{
+			                        title: body.response.docs[0].headline.main,
+			                        subtitle: "Here is your article",
+			                        default_action: {
+			                            type: "web_url",
+			                            url: body.response.docs[0].web.url,
+			                            messenger_extensions: true,
+			                            webview_height_ratio: "tall",
+			                            fallback_url: "www.jakeleeman.com"
+			                        },
+			                    }]
+			                }
+			            }
+			        };
+			        //sendMessage(userId, message);
+			        sendMessage(event.sender.id, message);
+			    }
+			});
+        	// sendMessage(event.sender.id, {text: "NYT!!!"});
         }
     }
     res.sendStatus(200);
