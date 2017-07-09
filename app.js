@@ -227,7 +227,7 @@ app.post('/webhook', function (req, res) {
 			                            url: body.response.docs[0].web.url,
 			                            messenger_extensions: true,
 			                            webview_height_ratio: "tall",
-			                            fallback_url: "www.jakeleeman.com"
+			                            fallback_url: "https://safe-hamlet-16188.herokuapp.com/"
 			                        },
 			                    }]
 			                }
