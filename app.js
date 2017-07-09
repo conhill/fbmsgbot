@@ -250,18 +250,17 @@ app.post('/webhook', function (req, res) {
 					        "template_type":"generic",
 					        "elements":[
 					           {
-					            "title":"Welcome to Peter\'s Hats",
-					            "image_url":"https://petersfancybrownhats.com/company_image.png",
-					            "subtitle":"We\'ve got the right hat for everyone.",
+					            "title":body.response.docs[0].headline.main,
+					            "subtitle":"Heres you article",
 					            "default_action": {
 					              "type": "web_url",
-					              "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
+					              "url": body.response.docs[0].web.url,
 					              "webview_height_ratio": "tall",
 					            },
 					            "buttons":[
 					              {
 					                "type":"web_url",
-					                "url":"https://petersfancybrownhats.com",
+					                "url":body.response.docs[0].web.url,
 					                "title":"View Website"
 					              }            
 					            ]      
