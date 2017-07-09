@@ -234,7 +234,7 @@ app.post('/webhook', function (req, res) {
 			        //     }
 			        // };
 			        //sendMessage(userId, message);
-			        sendMessage(event.sender.id,{text: body.response.docs[0].headline.main});
+			        sendMessage(event.sender.id,{text: body.response.docs[0].web.url});
 			    }
 			});
         	// sendMessage(event.sender.id, {text: "NYT!!!"});
