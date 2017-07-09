@@ -243,7 +243,7 @@ app.post('/webhook', function (req, res) {
 			        //         }
 			        //     }
 			        // };
-			        message = {
+			        message2 = {
 					    "attachment":{
 					      "type":"template",
 					      "payload":{
@@ -256,9 +256,7 @@ app.post('/webhook', function (req, res) {
 					            "default_action": {
 					              "type": "web_url",
 					              "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
-					              "messenger_extensions": true,
 					              "webview_height_ratio": "tall",
-					              "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
 					            },
 					            "buttons":[
 					              {
@@ -273,7 +271,7 @@ app.post('/webhook', function (req, res) {
 					    }
 					};
 			        //sendMessage(userId, message);
-			        sendMessage(event.sender.id, message);
+			        sendMessage(event.sender.id, message2);
 			    }
 			});
         	// sendMessage(event.sender.id, {text: "NYT!!!"});
