@@ -200,11 +200,9 @@ app.post('/webhook', function (req, res) {
         if(event.message.text === "ringo nyt"){
 
         	request.get({
-			    url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
+			    url: "https://api.nytimes.com/svc/topstories/v2/home.json",
 			    qs: {
 			        'api-key': "fca6d877b0354be1b1006d1d4091d3d7",
-			        'sort': "newest",
-			        'fl': "web_url,headline"
 			    },
 			}, function(err, response, body) {
 			    if (err) {
@@ -212,6 +210,7 @@ app.post('/webhook', function (req, res) {
 			    } else {
 			        body = JSON.parse(body);
 			        var tweet = '';
+			        body.reponse[0]
 			        //use checkTweet to get a tweet against current tweets
 			        // body.response.docs[0].main
 			        // message = {
@@ -243,6 +242,7 @@ app.post('/webhook', function (req, res) {
 			        //         }
 			        //     }
 			        // };
+			       	var i = Math.floor(Math.random() * 25) + 1  
 			        message2 = {
 					    "attachment":{
 					      "type":"template",
@@ -250,17 +250,18 @@ app.post('/webhook', function (req, res) {
 					        "template_type":"generic",
 					        "elements":[
 					           {
-					            "title": body.response.docs[0].headline.main,
+					            "title": body.response.docs[i].title,
 					            "subtitle":"Heres you article",
+					            "image_url": body.response.docs[i].multimedia.url,
 					            "default_action": {
 					              "type": "web_url",
-					              "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
+					              "url": body.response.docs[i].url,
 					              "webview_height_ratio": "tall",
 					            },
 					            "buttons":[
 					              {
 					                "type":"web_url",
-					                "url":"https://petersfancybrownhats.com",
+					                "url":body.response.docs[i].url,
 					                "title":"View Website"
 					              }            
 					            ]      
