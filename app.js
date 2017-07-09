@@ -214,35 +214,63 @@ app.post('/webhook', function (req, res) {
 			        var tweet = '';
 			        //use checkTweet to get a tweet against current tweets
 			        // body.response.docs[0].main
-			        message = {
-			            attachment: {
-			                type: "template",
-			                payload: {
-			                    template_type: "generic",
-			                    elements: [{
-			                        title: body.response.docs[0].headline.main,
-			                        subtitle: "Here is your article",
-			                        default_action: {
-			                            type: "web_url",
-			                            url: body.response.docs[0].web.url,
-			                            messenger_extensions: true,
-			                            webview_height_ratio: "tall",
-			                            fallback_url: "https://safe-hamlet-16188.herokuapp.com/"
-			                        },
-			                        buttons: [
-				                        {
-				                            title: "Yes",
-				                            type: "web_url",
-				                            url: body.response.docs[0].web.url,
-				                            messenger_extensions: true,
-				                            webview_height_ratio: "tall",
-				                            fallback_url: "https://safe-hamlet-16188.herokuapp.com/"                       
-				                        }
-				                    ] 
-			                    }]
-			                }
-			            }
-			        };
+			        // message = {
+			        //     attachment: {
+			        //         type: "survey",
+			        //         payload: {
+			        //             template_type: "generic",
+			        //             elements: [{
+			        //                 title: body.response.docs[0].headline.main,
+			        //                 subtitle: "Here is your article",
+			        //                 default_action: {
+			        //                     type: "web_url",
+			        //                     url: body.response.docs[0].web.url,
+			        //                     messenger_extensions: true,
+			        //                     webview_height_ratio: "tall",
+			        //                     fallback_url: "https://safe-hamlet-16188.herokuapp.com/"
+			        //                 },
+			        //                 buttons: [
+				       //                  {
+				       //                      title: "Yes",
+				       //                      type: "web_url",
+				       //                      url: body.response.docs[0].web.url,
+				       //                      messenger_extensions: true,
+				       //                      webview_height_ratio: "tall",
+				       //                      fallback_url: "https://safe-hamlet-16188.herokuapp.com/"                       
+				       //                  }
+				       //              ] 
+			        //             }]
+			        //         }
+			        //     }
+			        // };
+			        message:{
+				    attachment:{
+				      type:"template",
+				      payload:{
+				        template_type:"generic",
+				        elements:[
+				           {
+				            title:"Welcome to Peter\'s Hats",
+				            image_url:"https://petersfancybrownhats.com/company_image.png",
+				            subtitle:"We\'ve got the right hat for everyone.",
+				            default_action: {
+				              type: "web_url",
+				              url: "https://peterssendreceiveapp.ngrok.io/view?item=103",
+				              messenger_extensions: true,
+				              webview_height_ratio: "tall",
+				              fallback_url: "https://peterssendreceiveapp.ngrok.io/"
+				            },
+				            buttons:[
+				              {
+				                type:"web_url",
+				                url:"https://petersfancybrownhats.com",
+				                title:"View Website"
+				              }            
+				            ]      
+				          }
+				        ]
+				      }
+				    }
 			        //sendMessage(userId, message);
 			        sendMessage(event.sender.id, message);
 			    }
