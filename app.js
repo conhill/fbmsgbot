@@ -214,27 +214,37 @@ app.post('/webhook', function (req, res) {
 			        var tweet = '';
 			        //use checkTweet to get a tweet against current tweets
 			        // body.response.docs[0].main
-			        // message = {
-			        //     attachment: {
-			        //         type: "template",
-			        //         payload: {
-			        //             template_type: "generic",
-			        //             elements: [{
-			        //                 title: body.response.docs[0].headline.main,
-			        //                 subtitle: "Here is your article",
-			        //                 default_action: {
-			        //                     type: "web_url",
-			        //                     url: body.response.docs[0].web.url,
-			        //                     messenger_extensions: true,
-			        //                     webview_height_ratio: "tall",
-			        //                     fallback_url: "https://safe-hamlet-16188.herokuapp.com/"
-			        //                 },
-			        //             }]
-			        //         }
-			        //     }
-			        // };
+			        message = {
+			            attachment: {
+			                type: "template",
+			                payload: {
+			                    template_type: "generic",
+			                    elements: [{
+			                        title: body.response.docs[0].headline.main,
+			                        subtitle: "Here is your article",
+			                        default_action: {
+			                            type: "web_url",
+			                            url: body.response.docs[0].web.url,
+			                            messenger_extensions: true,
+			                            webview_height_ratio: "tall",
+			                            fallback_url: "https://safe-hamlet-16188.herokuapp.com/"
+			                        },
+			                        buttons: [
+				                        {
+				                            title: "Yes",
+				                            type: "web_url",
+				                            url: body.response.docs[0].web.url,
+				                            messenger_extensions: true,
+				                            webview_height_ratio: "tall",
+				                            fallback_url: "https://safe-hamlet-16188.herokuapp.com/"                       
+				                        }
+				                    ] 
+			                    }]
+			                }
+			            }
+			        };
 			        //sendMessage(userId, message);
-			        sendMessage(event.sender.id, {text: " " + body.response.docs[0].web.url});
+			        sendMessage(event.sender.id, message);
 			    }
 			});
         	// sendMessage(event.sender.id, {text: "NYT!!!"});
