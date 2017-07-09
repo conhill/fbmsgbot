@@ -250,17 +250,17 @@ app.post('/webhook', function (req, res) {
 					        "template_type":"generic",
 					        "elements":[
 					           {
-					            "title":body.response.docs[0].headline.main,
+					            "title": body.response.docs[0].headline.main,
 					            "subtitle":"Heres you article",
 					            "default_action": {
 					              "type": "web_url",
-					              "url": body.response.docs[0].web.url,
+					              "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
 					              "webview_height_ratio": "tall",
 					            },
 					            "buttons":[
 					              {
 					                "type":"web_url",
-					                "url":body.response.docs[0].web.url,
+					                "url":"https://petersfancybrownhats.com",
 					                "title":"View Website"
 					              }            
 					            ]      
