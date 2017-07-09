@@ -198,7 +198,7 @@ app.post('/webhook', function (req, res) {
         //     sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         // }
         if(event.message.text === "ringo nyt"){
-        	sendMessage(recipientId, {text: "NYT!!!"});
+        	sendMessage(event.sender.id, {text: "NYT!!!"});
         }
     }
     res.sendStatus(200);
