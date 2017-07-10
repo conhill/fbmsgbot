@@ -194,9 +194,6 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         res.send(event.message.text);
-        // if (event.message && event.message.text) {
-        //     sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
-        // }
         if(event.message.text === "ringo nyt"){
 
         	request.get({
@@ -209,39 +206,6 @@ app.post('/webhook', function (req, res) {
 			        console.log("Database error: " + err);
 			    } else {
 			        body = JSON.parse(body);
-			        var tweet = '';
-			        //body.reponse[0]
-			        //use checkTweet to get a tweet against current tweets
-			        // body.response.docs[0].main
-			        // message = {
-			        //     attachment: {
-			        //         type: "survey",
-			        //         payload: {
-			        //             template_type: "generic",
-			        //             elements: [{
-			        //                 title: body.response.docs[0].headline.main,
-			        //                 subtitle: "Here is your article",
-			        //                 default_action: {
-			        //                     type: "web_url",
-			        //                     url: body.response.docs[0].web.url,
-			        //                     messenger_extensions: true,
-			        //                     webview_height_ratio: "tall",
-			        //                     fallback_url: "https://safe-hamlet-16188.herokuapp.com/"
-			        //                 },
-			        //                 buttons: [
-				       //                  {
-				       //                      title: "Yes",
-				       //                      type: "web_url",
-				       //                      url: body.response.docs[0].web.url,
-				       //                      messenger_extensions: true,
-				       //                      webview_height_ratio: "tall",
-				       //                      fallback_url: "https://safe-hamlet-16188.herokuapp.com/"                       
-				       //                  }
-				       //              ] 
-			        //             }]
-			        //         }
-			        //     }
-			        // };
 			       	var i = Math.floor(Math.random() * 25) + 1  
 			        message2 = {
 					    "attachment":{
@@ -270,11 +234,9 @@ app.post('/webhook', function (req, res) {
 					      }
 					    }
 					};
-			        //sendMessage(userId, message);
 			        sendMessage(event.sender.id, message2);
 			    }
 			});
-        	// sendMessage(event.sender.id, {text: "NYT!!!"});
         }
     }
     res.sendStatus(200);
