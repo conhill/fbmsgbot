@@ -250,18 +250,18 @@ app.post('/webhook', function (req, res) {
 					        "template_type":"generic",
 					        "elements":[
 					           {
-					            "title": body.response.docs[i].title,
+					            "title": body.results[i].title,
 					            "subtitle":"Heres you article",
-					            "image_url": body.response.docs[i].multimedia.url,
+					            "image_url": body.results[i].multimedia[0].url,
 					            "default_action": {
 					              "type": "web_url",
-					              "url": body.response.docs[i].url,
+					              "url": body.results[i].url,
 					              "webview_height_ratio": "tall",
 					            },
 					            "buttons":[
 					              {
 					                "type":"web_url",
-					                "url":body.response.docs[i].url,
+					                "url":body.results[i].url,
 					                "title":"View Website"
 					              }            
 					            ]      
