@@ -210,7 +210,7 @@ app.post('/webhook', function (req, res) {
 			    } else {
 			        body = JSON.parse(body);
 			        var tweet = '';
-			        body.reponse[0]
+			        //body.reponse[0]
 			        //use checkTweet to get a tweet against current tweets
 			        // body.response.docs[0].main
 			        // message = {
